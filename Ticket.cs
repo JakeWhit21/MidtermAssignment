@@ -1,6 +1,6 @@
 public class Ticket
 {
-    public int ticketId { get; set; }
+    public string ticketId { get; set; }
     public string summary { get; set; }
     public string status { get; set; }
     public string priority { get; set; }
