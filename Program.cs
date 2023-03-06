@@ -23,7 +23,11 @@ do
 
     if (choice == "1")
     {
-        
+        ticketsFile.ReadTicket(file);
+        foreach (Ticket t in ticketsFile.tickets)
+        {
+            Console.WriteLine(t.Display());
+        }
     }
     else if (choice == "2")
     {

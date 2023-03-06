@@ -50,7 +50,7 @@ public class TicketsFile
     public void AddTicket(Ticket ticket)
     {
         filePath = "Tickets.txt";
-        StreamWriter sw = new StreamWriter(filePath, append: true);
+        StreamWriter sw = new StreamWriter(filePath, true);
         sw.WriteLine($"{ticket.ticketId}|{ticket.summary}|{ticket.status}|{ticket.priority}|{ticket.submitter}|{ticket.assigned}|{ticket.watching}");
         sw.Close();
     }
