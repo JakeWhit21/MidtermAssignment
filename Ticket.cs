@@ -12,4 +12,9 @@ public class Ticket
     {
         
     }
+
+    public string Display()
+    {
+        return $"Id: {ticketId}\nSummary: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nAssigned to: {assigned}\nWatching: {watching}";
+    }
 }

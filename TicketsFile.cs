@@ -39,4 +39,14 @@ public class TicketsFile
             Console.WriteLine("File does not exist");
         }
     }
+
+    public void AddTicket(Ticket ticket)
+    {
+        ticket.ticketId = tickets.Max(t => t.ticketId) + 1;
+        StreamWriter sw = new StreamWriter(filePath, append: true);
+        sw.WriteLine($"{ticket.ticketId},{ticket.summary},{ticket.status},{ticket.priority},{ticket.submitter},{ticket.assigned},{ticket.watching}");
+        sw.Close();
+
+        tickets.Add(ticket);
+    }
 }
