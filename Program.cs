@@ -12,7 +12,7 @@ string choice;
 
 TicketsFile ticketsFile = new TicketsFile();
 
-do
+do 
 {
     //ask user a question
     Console.WriteLine("1) Read data from file.");
