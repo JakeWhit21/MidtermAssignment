@@ -47,12 +47,80 @@ public class TicketsFile
         }
     }
 
-    public void AddTicket(Ticket ticket)
+    public void ReadEnhancementTicket(string ticketFile) 
     {
-        filePath = "Tickets.txt";
-        StreamWriter sw = new StreamWriter(filePath, true);
-        sw.WriteLine($"{ticket.ticketId}|{ticket.summary}|{ticket.status}|{ticket.priority}|{ticket.submitter}|{ticket.assigned}|{ticket.watching}");
-        sw.Close();
+        tickets = new List<Ticket>();
+        // read data from file
+        if (File.Exists(ticketFile))
+        {
+            // read data from file
+            StreamReader sr = new StreamReader(ticketFile);
+            while (!sr.EndOfStream)
+            {
+                Enhancement enhancementTicket = new Enhancement();
+                string line = sr.ReadLine();
+                //convert string to array
+                string[] ticketDetails = line.Split('|');
+                //display array data
+                //Console.WriteLine("TicketID: {0}, Summary: {1}, Status: {2}, Priority: {3}, Submitter: {4}, Assigned: {5}, Watching: {6}", arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6]);
+                enhancementTicket.ticketId = ticketDetails[0];
+                enhancementTicket.summary = ticketDetails[1];
+                enhancementTicket.status = ticketDetails[2];
+                enhancementTicket.priority = ticketDetails[3];
+                enhancementTicket.submitter = ticketDetails[4];
+                enhancementTicket.assigned = ticketDetails[5];
+                enhancementTicket.watching = ticketDetails[6];
+                enhancementTicket.software = ticketDetails[7];
+                enhancementTicket.cost = ticketDetails[8];
+                enhancementTicket.reason = ticketDetails[9];
+                enhancementTicket.estimate = ticketDetails[10];
+
+                tickets.Add(enhancementTicket);
+            }
+        
+            sr.Close();
+        }
+        else
+        {
+            Console.WriteLine("File does not exist");
+        }
+    }
+
+    public void ReadTaskTicket(string ticketFile)
+    {
+        tickets = new List<Ticket>();
+        // read data from file
+        if (File.Exists(ticketFile))
+        {
+            // read data from file
+            StreamReader sr = new StreamReader(ticketFile);
+            while (!sr.EndOfStream)
+            {
+                Task taskTicket = new Task();
+                string line = sr.ReadLine();
+                //convert string to array
+                string[] ticketDetails = line.Split('|');
+                //display array data
+                //Console.WriteLine("TicketID: {0}, Summary: {1}, Status: {2}, Priority: {3}, Submitter: {4}, Assigned: {5}, Watching: {6}", arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6]);
+                taskTicket.ticketId = ticketDetails[0];
+                taskTicket.summary = ticketDetails[1];
+                taskTicket.status = ticketDetails[2];
+                taskTicket.priority = ticketDetails[3];
+                taskTicket.submitter = ticketDetails[4];
+                taskTicket.assigned = ticketDetails[5];
+                taskTicket.watching = ticketDetails[6];
+                taskTicket.projectName = ticketDetails[7];
+                taskTicket.dueDate = ticketDetails[8];
+
+                tickets.Add(taskTicket);
+            }
+        
+            sr.Close();
+        }
+        else
+        {
+            Console.WriteLine("File does not exist");
+        }
     }
 
     public void AddBug(Bug bug)

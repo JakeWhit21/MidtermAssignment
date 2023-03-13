@@ -8,14 +8,14 @@ var logger = LogManager.LoadConfiguration(path).GetCurrentClassLogger();
 logger.Info("Program started");
 
 string bugFile = "BugTickets.txt";
-string enhancementsFile = "EnhancementsTickets.txt";
+string enhancementsFile = "EnhancementTickets.txt";
 string taskFile = "TaskTickets.txt";
 string choice;
 string ticketChoice;
 
 TicketsFile ticketsFile = new TicketsFile();
 
-do 
+do
 {
     //ask user a question
     Console.WriteLine("1) Read data from file.");
@@ -32,16 +32,32 @@ do
         Console.WriteLine("3) Task");
         ticketChoice = Console.ReadLine();
 
-        if(ticketChoice == "1")
+        if (ticketChoice == "1")
         {
-        ticketsFile.ReadBugTicket(bugFile);
-        foreach (Bug b in ticketsFile.tickets)
-        {
-            Console.WriteLine(b.Display());
+            ticketsFile.ReadBugTicket(bugFile);
+            foreach (Bug b in ticketsFile.tickets)
+            {
+                Console.WriteLine(b.Display());
+            }
         }
+        else if(ticketChoice == "2")
+        {
+            ticketsFile.ReadEnhancementTicket(enhancementsFile);
+            foreach (Enhancement e in ticketsFile.tickets)
+            {
+                Console.WriteLine(e.Display());
+            }
+        }
+        else if(ticketChoice == "3")
+        {
+            ticketsFile.ReadTaskTicket(taskFile);
+            foreach (Task t in ticketsFile.tickets)
+            {
+                Console.WriteLine(t.Display());
+            }
         }
 
-        
+
     }
     else if (choice == "2")
     {
@@ -56,30 +72,102 @@ do
             Bug bug = new Bug();
 
             Console.WriteLine("Enter ticket ID");
-        bug.ticketId = Console.ReadLine();
+            bug.ticketId = Console.ReadLine();
 
-        Console.WriteLine("Enter the summary for the ticket: ");
-        bug.summary = Console.ReadLine();
+            Console.WriteLine("Enter the summary for the ticket: ");
+            bug.summary = Console.ReadLine();
 
-        Console.WriteLine("Enter status: ");
-        bug.status = Console.ReadLine();
+            Console.WriteLine("Enter status: ");
+            bug.status = Console.ReadLine();
 
-        Console.WriteLine("Enter priority: ");
-        bug.priority = Console.ReadLine();
+            Console.WriteLine("Enter priority: ");
+            bug.priority = Console.ReadLine();
 
-        Console.WriteLine("Enter submitter: ");
-        bug.submitter = Console.ReadLine();
+            Console.WriteLine("Enter submitter: ");
+            bug.submitter = Console.ReadLine();
 
-        Console.WriteLine("Enter person assigned to: ");
-        bug.assigned = Console.ReadLine();
+            Console.WriteLine("Enter person assigned to: ");
+            bug.assigned = Console.ReadLine();
 
-        Console.WriteLine("Enter person watching: ");
-        bug.watching = Console.ReadLine();
+            Console.WriteLine("Enter person watching: ");
+            bug.watching = Console.ReadLine();
 
-        Console.WriteLine("Enter severity: ");
-        bug.severity = Console.ReadLine();
+            Console.WriteLine("Enter severity: ");
+            bug.severity = Console.ReadLine();
 
-        ticketsFile.AddBug(bug);
+            ticketsFile.AddBug(bug);
+        }
+        else if (ticketChoice == "2")
+        {
+            Enhancement enhancement = new Enhancement();
+
+            Console.WriteLine("Enter ticket ID");
+            enhancement.ticketId = Console.ReadLine();
+
+            Console.WriteLine("Enter the summary for the ticket: ");
+            enhancement.summary = Console.ReadLine();
+
+            Console.WriteLine("Enter status: ");
+            enhancement.status = Console.ReadLine();
+
+            Console.WriteLine("Enter priority: ");
+            enhancement.priority = Console.ReadLine();
+
+            Console.WriteLine("Enter submitter: ");
+            enhancement.submitter = Console.ReadLine();
+
+            Console.WriteLine("Enter person assigned to: ");
+            enhancement.assigned = Console.ReadLine();
+
+            Console.WriteLine("Enter person watching: ");
+            enhancement.watching = Console.ReadLine();
+
+            Console.WriteLine("Enter software: ");
+            enhancement.software = Console.ReadLine();
+
+            Console.WriteLine("Enter cost: ");
+            enhancement.cost = Console.ReadLine();
+
+            Console.WriteLine("Enter reason: ");
+            enhancement.reason = Console.ReadLine();
+
+            Console.WriteLine("Enter estimate: ");
+            enhancement.estimate = Console.ReadLine();
+
+            ticketsFile.AddEnhancement(enhancement);
+        }
+        else if (ticketChoice == "3")
+        {
+            Task task = new Task();
+
+            Console.WriteLine("Enter ticket ID");
+            task.ticketId = Console.ReadLine();
+
+            Console.WriteLine("Enter the summary for the ticket: ");
+            task.summary = Console.ReadLine();
+
+            Console.WriteLine("Enter status: ");
+            task.status = Console.ReadLine();
+
+            Console.WriteLine("Enter priority: ");
+            task.priority = Console.ReadLine();
+
+            Console.WriteLine("Enter submitter: ");
+            task.submitter = Console.ReadLine();
+
+            Console.WriteLine("Enter person assigned to: ");
+            task.assigned = Console.ReadLine();
+
+            Console.WriteLine("Enter person watching: ");
+            task.watching = Console.ReadLine();
+
+            Console.WriteLine("Enter project name: ");
+            task.projectName = Console.ReadLine();
+
+            Console.WriteLine("Enter due date: ");
+            task.dueDate = Console.ReadLine();
+
+            ticketsFile.AddTask(task);
         }
 
 
