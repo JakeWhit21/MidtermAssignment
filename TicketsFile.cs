@@ -62,4 +62,20 @@ public class TicketsFile
         sw.WriteLine($"{bug.ticketId}|{bug.summary}|{bug.status}|{bug.priority}|{bug.submitter}|{bug.assigned}|{bug.watching}|{bug.severity}");
         sw.Close();
     }
+
+    public void AddEnhancement(Enhancement enhancement)
+    {
+        filePath = "EnhancementTickets.txt";
+        StreamWriter sw = new StreamWriter(filePath, true);
+        sw.WriteLine($"{enhancement.ticketId}|{enhancement.summary}|{enhancement.status}|{enhancement.priority}|{enhancement.submitter}|{enhancement.assigned}|{enhancement.watching}|{enhancement.software}|{enhancement.cost}|{enhancement.reason}|{enhancement.estimate}");
+        sw.Close();
+    }
+
+    public void AddTask(Task task)
+    {
+        filePath = "TaskTickets.txt";
+        StreamWriter sw = new StreamWriter(filePath, true);
+        sw.WriteLine($"{task.ticketId}|{task.summary}|{task.status}|{task.priority}|{task.submitter}|{task.assigned}|{task.watching}|{task.projectName}|{task.dueDate}");
+        sw.Close();
+    }
 }
