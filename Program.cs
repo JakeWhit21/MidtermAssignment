@@ -16,7 +16,7 @@ do
 {
     //ask user a question
     Console.WriteLine("1) Read data from file.");
-    Console.WriteLine("2) Create file from data.");
+    Console.WriteLine("2) Create file from data or add ticket to file.");
     Console.WriteLine("Enter any other key to exit.");
     // input response
     choice = Console.ReadLine();
@@ -31,6 +31,20 @@ do
     }
     else if (choice == "2")
     {
+        string ticketChoice;
+
+        Console.WriteLine("Which ticket do you want to enter?");
+        Console.WriteLine("1) Bug");
+        Console.WriteLine("2) Enhancement");
+        Console.WriteLine("3) Task");
+        ticketChoice = Console.ReadLine();
+
+        if (ticketChoice == "1")
+        {
+            
+        }
+
+
         Ticket ticket = new Ticket();
 
         Console.WriteLine("Enter ticket ID");
