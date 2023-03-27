@@ -204,6 +204,7 @@ do
         Console.WriteLine("2) priority");
         Console.WriteLine("3) submitter");
         string input = Console.ReadLine();
+        string input2;
 
         switch (input)
         {
@@ -212,7 +213,8 @@ do
                 Console.WriteLine("1) Bug");
                 Console.WriteLine("2) Enhancement");
                 Console.WriteLine("3) Task");
-                string input2 = Console.ReadLine();
+
+                input2 = Console.ReadLine();
 
                 // // LINQ - Where filter operator & Select projection operator & Contains quantifier operator
                 // var titles = movieFile.Movies.Where(m => m.title.Contains("Shark")).Select(m => m.title);
@@ -231,19 +233,36 @@ do
 
                     var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch)).Select(t => t.ticketId);
                     Console.WriteLine($"There are {statusSearchResults.Count()} tickets with {statusSearch} as the status: ");
-                    foreach (string s in statusSearchResults){
+                    foreach (string s in statusSearchResults)
+                    {
                         Console.WriteLine($"   Ticket ID: {s}");
                     }
-
-
                 }
                 else if (input2 == "2")
                 {
+                    ticketsFile.ReadEnhancementTicket(enhancementsFile);
+                    Console.WriteLine("Enter something to search for: ");
+                    var statusSearch = Console.ReadLine();
 
+                    var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch)).Select(t => t.ticketId);
+                    Console.WriteLine($"There are {statusSearchResults.Count()} tickets with {statusSearch} as the status: ");
+                    foreach (string s in statusSearchResults)
+                    {
+                        Console.WriteLine($"   Ticket ID: {s}");
+                    }
                 }
                 else if (input2 == "3")
                 {
+                    ticketsFile.ReadTaskTicket(taskFile);
+                    Console.WriteLine("Enter something to search for: ");
+                    var statusSearch = Console.ReadLine();
 
+                    var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch)).Select(t => t.ticketId);
+                    Console.WriteLine($"There are {statusSearchResults.Count()} tickets with {statusSearch} as the status: ");
+                    foreach (string s in statusSearchResults)
+                    {
+                        Console.WriteLine($"   Ticket ID: {s}");
+                    }
                 }
                 else
                 {
@@ -252,7 +271,55 @@ do
                 break;
 
             case "2":
+                Console.WriteLine("Which ticket? ");
+                Console.WriteLine("1) Bug");
+                Console.WriteLine("2) Enhancement");
+                Console.WriteLine("3) Task");
+                input2 = Console.ReadLine();
+                
+                if (input2 == "1")
+                {
+                    ticketsFile.ReadBugTicket(bugFile);
+                    Console.WriteLine("Enter something to search for: ");
+                    var prioritySearch = Console.ReadLine();
 
+                    var prioritySearchResults = ticketsFile.tickets.Where(t => t.priority.Contains(prioritySearch)).Select(t => t.ticketId);
+                    Console.WriteLine($"There are {prioritySearchResults.Count()} tickets with {prioritySearch} as the status: ");
+                    foreach (string s in prioritySearchResults)
+                    {
+                        Console.WriteLine($"   Ticket ID: {s}");
+                    }
+                }
+                else if (input2 == "2")
+                {
+                    ticketsFile.ReadEnhancementTicket(enhancementsFile);
+                    Console.WriteLine("Enter something to search for: ");
+                    var prioritySearch = Console.ReadLine();
+
+                    var prioritySearchResults = ticketsFile.tickets.Where(t => t.priority.Contains(prioritySearch)).Select(t => t.ticketId);
+                    Console.WriteLine($"There are {prioritySearchResults.Count()} tickets with {prioritySearch} as the status: ");
+                    foreach (string s in prioritySearchResults)
+                    {
+                        Console.WriteLine($"   Ticket ID: {s}");
+                    }
+                }
+                else if (input2 == "3")
+                {
+                    ticketsFile.ReadTaskTicket(taskFile);
+                    Console.WriteLine("Enter something to search for: ");
+                    var prioritySearch = Console.ReadLine();
+
+                    var prioritySearchResults = ticketsFile.tickets.Where(t => t.priority.Contains(prioritySearch)).Select(t => t.ticketId);
+                    Console.WriteLine($"There are {prioritySearchResults.Count()} tickets with {prioritySearch} as the status: ");
+                    foreach (string s in prioritySearchResults)
+                    {
+                        Console.WriteLine($"   Ticket ID: {s}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input");
+                }
                 break;
 
             case "3":
