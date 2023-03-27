@@ -41,7 +41,7 @@ do
                 Console.WriteLine(b.Display());
             }
         }
-        else if(ticketChoice == "2")
+        else if (ticketChoice == "2")
         {
             ticketsFile.ReadEnhancementTicket(enhancementsFile);
             foreach (Enhancement e in ticketsFile.tickets)
@@ -49,7 +49,7 @@ do
                 Console.WriteLine(e.Display());
             }
         }
-        else if(ticketChoice == "3")
+        else if (ticketChoice == "3")
         {
             ticketsFile.ReadTaskTicket(taskFile);
             foreach (Task t in ticketsFile.tickets)
@@ -205,22 +205,63 @@ do
         Console.WriteLine("3) submitter");
         string input = Console.ReadLine();
 
-        switch(input){
-            case "1": 
-                
-            break;
+        switch (input)
+        {
+            case "1":
+                Console.WriteLine("Which ticket? ");
+                Console.WriteLine("1) Bug");
+                Console.WriteLine("2) Enhancement");
+                Console.WriteLine("3) Task");
+                string input2 = Console.ReadLine();
 
-            case "2": 
+                // // LINQ - Where filter operator & Select projection operator & Contains quantifier operator
+                // var titles = movieFile.Movies.Where(m => m.title.Contains("Shark")).Select(m => m.title);
+                // // LINQ - Count aggregation method
+                // Console.WriteLine($"There are {titles.Count()} movies with \"Shark\" in the title:");
+                // foreach (string t in titles)
+                // {
+                //     Console.WriteLine($"  {t}");
+                // }
 
-            break;
+                if (input2 == "1")
+                {
+                    ticketsFile.ReadBugTicket(bugFile);
+                    Console.WriteLine("Enter something to search for: ");
+                    var statusSearch = Console.ReadLine();
+
+                    var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch)).Select(t => t.ticketId);
+                    Console.WriteLine($"There are {statusSearchResults.Count()} tickets with {statusSearch} as the status: ");
+                    foreach (string s in statusSearchResults){
+                        Console.WriteLine($"   Ticket ID: {s}");
+                    }
+
+
+                }
+                else if (input2 == "2")
+                {
+
+                }
+                else if (input2 == "3")
+                {
+
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input");
+                }
+                break;
+
+            case "2":
+
+                break;
 
             case "3":
 
-            break;
+                break;
 
-            default: 
-            Console.WriteLine("Wrong input. Try again.");
-            break;
+            default:
+                Console.WriteLine("Wrong input. Try again.");
+                break;
         }
     }
 } while (choice == "1" || choice == "2");

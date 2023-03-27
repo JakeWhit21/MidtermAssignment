@@ -7,7 +7,7 @@ public class TicketsFile
 
     public TicketsFile()
     {
-        
+        ReadBugTicket("BugTickets.txt");
     }
 
     public void ReadBugTicket(string ticketFile)
