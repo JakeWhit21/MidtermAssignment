@@ -20,6 +20,7 @@ do
     //ask user a question
     Console.WriteLine("1) Read data from file.");
     Console.WriteLine("2) Create file from data or add ticket to file.");
+    Console.WriteLine("3) Search for ticket.");
     Console.WriteLine("Enter any other key to exit.");
     // input response
     choice = Console.ReadLine();
@@ -195,6 +196,32 @@ do
         // ticket.watching = Console.ReadLine();
 
         // ticketsFile.AddTicket(ticket);
+    }
+    else if (choice == "3")
+    {
+        Console.WriteLine("Enter a part of the ticket to search by: ");
+        Console.WriteLine("1) status");
+        Console.WriteLine("2) priority");
+        Console.WriteLine("3) submitter");
+        string input = Console.ReadLine();
+
+        switch(input){
+            case "1": 
+                
+            break;
+
+            case "2": 
+
+            break;
+
+            case "3":
+
+            break;
+
+            default: 
+            Console.WriteLine("Wrong input. Try again.");
+            break;
+        }
     }
 } while (choice == "1" || choice == "2");
 
