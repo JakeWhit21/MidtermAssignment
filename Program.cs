@@ -231,11 +231,11 @@ do
                     Console.WriteLine("Enter something to search for: ");
                     var statusSearch = Console.ReadLine();
 
-                    var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch)).Select(t => t.ticketId);
+                    var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch));
                     Console.WriteLine($"There are {statusSearchResults.Count()} tickets with {statusSearch} as the status: ");
-                    foreach (string s in statusSearchResults)
+                    foreach (Bug b in statusSearchResults)
                     {
-                        Console.WriteLine($"   Ticket ID: {s}");
+                        Console.WriteLine($"    {b.Display()}");
                     }
                 }
                 else if (input2 == "2")
@@ -244,11 +244,11 @@ do
                     Console.WriteLine("Enter something to search for: ");
                     var statusSearch = Console.ReadLine();
 
-                    var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch)).Select(t => t.ticketId);
+                    var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch));
                     Console.WriteLine($"There are {statusSearchResults.Count()} tickets with {statusSearch} as the status: ");
-                    foreach (string s in statusSearchResults)
+                    foreach (Enhancement e in statusSearchResults)
                     {
-                        Console.WriteLine($"   Ticket ID: {s}");
+                        Console.WriteLine($"    {e.Display()}");
                     }
                 }
                 else if (input2 == "3")
@@ -257,11 +257,11 @@ do
                     Console.WriteLine("Enter something to search for: ");
                     var statusSearch = Console.ReadLine();
 
-                    var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch)).Select(t => t.ticketId);
+                    var statusSearchResults = ticketsFile.tickets.Where(t => t.status.Contains(statusSearch));
                     Console.WriteLine($"There are {statusSearchResults.Count()} tickets with {statusSearch} as the status: ");
-                    foreach (string s in statusSearchResults)
+                    foreach (Task t in statusSearchResults)
                     {
-                        Console.WriteLine($"   Ticket ID: {s}");
+                        Console.WriteLine($"    {t.Display()}");
                     }
                 }
                 else
@@ -283,11 +283,11 @@ do
                     Console.WriteLine("Enter something to search for: ");
                     var prioritySearch = Console.ReadLine();
 
-                    var prioritySearchResults = ticketsFile.tickets.Where(t => t.priority.Contains(prioritySearch)).Select(t => t.ticketId);
+                    var prioritySearchResults = ticketsFile.tickets.Where(t => t.priority.Contains(prioritySearch));
                     Console.WriteLine($"There are {prioritySearchResults.Count()} tickets with {prioritySearch} as the status: ");
-                    foreach (string s in prioritySearchResults)
+                    foreach (Bug b in prioritySearchResults)
                     {
-                        Console.WriteLine($"   Ticket ID: {s}");
+                        Console.WriteLine($"    {b.Display()}");
                     }
                 }
                 else if (input2 == "2")
@@ -296,11 +296,11 @@ do
                     Console.WriteLine("Enter something to search for: ");
                     var prioritySearch = Console.ReadLine();
 
-                    var prioritySearchResults = ticketsFile.tickets.Where(t => t.priority.Contains(prioritySearch)).Select(t => t.ticketId);
+                    var prioritySearchResults = ticketsFile.tickets.Where(t => t.priority.Contains(prioritySearch));
                     Console.WriteLine($"There are {prioritySearchResults.Count()} tickets with {prioritySearch} as the status: ");
-                    foreach (string s in prioritySearchResults)
+                    foreach (Enhancement e in prioritySearchResults)
                     {
-                        Console.WriteLine($"   Ticket ID: {s}");
+                        Console.WriteLine($"    {e.Display()}");
                     }
                 }
                 else if (input2 == "3")
@@ -309,11 +309,11 @@ do
                     Console.WriteLine("Enter something to search for: ");
                     var prioritySearch = Console.ReadLine();
 
-                    var prioritySearchResults = ticketsFile.tickets.Where(t => t.priority.Contains(prioritySearch)).Select(t => t.ticketId);
+                    var prioritySearchResults = ticketsFile.tickets.Where(t => t.priority.Contains(prioritySearch));
                     Console.WriteLine($"There are {prioritySearchResults.Count()} tickets with {prioritySearch} as the status: ");
-                    foreach (string s in prioritySearchResults)
+                    foreach (Task t in prioritySearchResults)
                     {
-                        Console.WriteLine($"   Ticket ID: {s}");
+                        Console.WriteLine($"    {t.Display()}");
                     }
                 }
                 else
@@ -323,7 +323,55 @@ do
                 break;
 
             case "3":
+                Console.WriteLine("Which ticket? ");
+                Console.WriteLine("1) Bug");
+                Console.WriteLine("2) Enhancement");
+                Console.WriteLine("3) Task");
+                input2 = Console.ReadLine();
+                
+                if (input2 == "1")
+                {
+                    ticketsFile.ReadBugTicket(bugFile);
+                    Console.WriteLine("Enter something to search for: ");
+                    var submitterSearch = Console.ReadLine();
 
+                    var submitterSearchResults = ticketsFile.tickets.Where(t => t.submitter.Contains(submitterSearch));
+                    Console.WriteLine($"There are {submitterSearchResults.Count()} tickets with {submitterSearch} as the status: ");
+                    foreach (Bug b in submitterSearchResults)
+                    {
+                        Console.WriteLine($"    {b.Display()}");
+                    }
+                }
+                else if (input2 == "2")
+                {
+                    ticketsFile.ReadEnhancementTicket(enhancementsFile);
+                    Console.WriteLine("Enter something to search for: ");
+                    var submitterSearch = Console.ReadLine();
+
+                    var submitterSearchResults = ticketsFile.tickets.Where(t => t.submitter.Contains(submitterSearch));
+                    Console.WriteLine($"There are {submitterSearchResults.Count()} tickets with {submitterSearch} as the status: ");
+                    foreach (Enhancement e in submitterSearchResults)
+                    {
+                        Console.WriteLine($"    {e.Display()}");
+                    }
+                }
+                else if (input2 == "3")
+                {
+                    ticketsFile.ReadTaskTicket(taskFile);
+                    Console.WriteLine("Enter something to search for: ");
+                    var submitterSearch = Console.ReadLine();
+
+                    var submitterSearchResults = ticketsFile.tickets.Where(t => t.submitter.Contains(submitterSearch));
+                    Console.WriteLine($"There are {submitterSearchResults.Count()} tickets with {submitterSearch} as the status: ");
+                    foreach (Task t in submitterSearchResults)
+                    {
+                        Console.WriteLine($"    {t.Display()}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input");
+                }
                 break;
 
             default:
@@ -331,7 +379,7 @@ do
                 break;
         }
     }
-} while (choice == "1" || choice == "2");
+} while (choice == "1" || choice == "2" || choice == "3");
 
 
 logger.Info("Program ended");
